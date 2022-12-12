@@ -1,12 +1,12 @@
 import { config } from 'dotenv';
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord.js'
-import PingCommand from './commands/ping.js';
-import CreateWalletCommand from './commands/createwallet.js'
-import WithdrawCommand from './commands/withdraw.js'
-import TipCommand from './commands/tip.js'
-import BalanceCommand from './commands/balance.js'
-import SetAddressCommand from './commands/setaddress.js'
+import { PingCommand } from './commands/ping.js';
+import { CreateWalletCommand } from './commands/createwallet.js'
+import { WithdrawCommand } from './commands/withdraw.js'
+import { TipCommand } from './commands/tip.js'
+import { BalanceCommand } from './commands/balance.js'
+import { SetAddressCommand } from './commands/setaddress.js'
 
 async function DeployCommands(client) {
     config();

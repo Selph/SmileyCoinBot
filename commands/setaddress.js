@@ -1,8 +1,9 @@
 import { SlashCommandBuilder } from 'discord.js';
 
-const SetAddressCommand = new SlashCommandBuilder()
+export const SetAddressCommand = new SlashCommandBuilder()
     .setName('setaddress')
     .setDescription('Set the address to which funds will be withdrawn')
     .addStringOption(option => option.setName('address').setDescription('Your SMLY wallet address'))
+    .toJSON()
 
-export default SetAddressCommand.toJSON()
+    

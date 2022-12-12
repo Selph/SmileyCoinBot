@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 
-const PingCommand = new SlashCommandBuilder()
+export const PingCommand = new SlashCommandBuilder()
     .setName('ping')
     .setDescription('Replies with Pong!')
-
-export default PingCommand.toJSON()
+    .addStringOption(option => option.setName('secretoption').setDescription('This option should not be seen by other users'))
+    .toJSON()
