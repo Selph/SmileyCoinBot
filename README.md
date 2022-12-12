@@ -3,8 +3,13 @@ A Discord tipping bot for SmileyCoin
 
 ## How to run
 
+Create a bot on your account on Discord
+
 Make a .env file with the following information:
-```DISCORD_TOKEN=<yourtoken>```
+```
+DISCORD_TOKEN=<yourtoken>
+//TODO postgres info
+```
 
 Make a config.json file with the following information:
 ```
@@ -14,6 +19,16 @@ Make a config.json file with the following information:
     "token": "<discordbottoken"
 }
 ```
+Clone the git to your machine.
+
+Use `npm install` to install the dependencies
+    
+Use `npm createdb` to create the necessary postgres db
+    
+run `node index.js`
+
+Invite your bot to your server
+  
 
 ## Commands available
 
