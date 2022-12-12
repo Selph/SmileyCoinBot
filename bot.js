@@ -1,51 +1,23 @@
-const { Client, GatewayIntentBits, Partials } = require('discord.js');
-require('dotenv/config');
-require('./commands/rps')
+// Require the necessary discord.js classes
+import { Client, Events, GatewayIntentBits, Routes } from 'discord.js'
+import DeployCommands from './deploy-commands.js';
 
-const client = new Client({
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.MessageContent,
-	],
-	partials: [Partials.Message, Partials.Reaction],
+const client = new Client({ 
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent
+  ] 
 });
 
-const possibilities = ['rock', 'paper', 'scissors'];
+client.on('interactionCreate', (interaction) => {
+  if (interaction.isChatInputCommand()) {
+    interaction.reply({ content: 'Pong!'})
+  }
+})
 
-client.on('ready', () => {
-	console.log('The bot is ready');
+client.once(Events.ClientReady, c => {
+	console.log(`Ready! Logged in as ${c.user.tag}`);
 });
 
-client.on('messageCreate', (message) => {
-	if (possibilities.includes(message.content)) {
-		let comp = Math.floor(Math.random() * 3);
-		let play = possibilities.indexOf(message.content);
-		let win = 0;
-
-		if ((play + 2) % 3 == comp) win = 1;
-		else if (comp == play) win = 2;
-
-		switch (win) {
-			case 0:
-				message.reply(
-					`you play ${possibilities[play]}, i play ${possibilities[comp]}.\n we are not the same.`
-				);
-				break;
-
-			case 1:
-				message.reply(
-					`you played ${message}, i played ${possibilities[comp]}. i never stood a chance`
-				);
-				break;
-
-			case 2:
-				message.reply(
-					`we both played ${message}, i guess great minds think alike :)`
-				);
-		}
-		message.reply(`comp: ${comp}`)
-	}
-});
-
-client.login(process.env.TOKEN);
+await DeployCommands(client)
