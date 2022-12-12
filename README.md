@@ -16,7 +16,7 @@ TOKEN=<yourbottoken>
 
 `GUILD_ID` is the server id. On Discord, go to settings -> advanced and check "Developer Mode". Now right click on your server and press "Copy Id"
 
-`TOKEN`is your bots token. Visit the bot page under Bot. Create the bot if necessary and click "Reset Token" to get the token.
+`TOKEN` is your bot's token. Visit the bot page under Bot. Create the bot if necessary and click "Reset Token" to get the token.
 
 Clone the repository to your machine
 
