@@ -1,10 +1,7 @@
-const { SlashCommandBuilder } = require('discord.js');
+import{ SlashCommandBuilder } from 'discord.js'
 
-module.exports = {
-	data: new SlashCommandBuilder()
-		.setName('ping')
-		.setDescription('Replies with Pong!'),
-	async execute(interaction) {
-		await interaction.reply('Pong!');
-	},
-};
+const RPSCommand = new SlashCommandBuilder()
+    .setName('RPS')
+    .setDescription('Plays Rock, Paper, Scissors');
+
+export default RPSCommand.toJSON();
