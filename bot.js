@@ -1,6 +1,7 @@
 // Require the necessary discord.js classes
 import { Client, Events, GatewayIntentBits, Routes } from 'discord.js'
 import DeployCommands from './deploy-commands.js';
+import { Sequelize } from 'sequelize'
 
 const client = new Client({ 
   intents: [
@@ -12,7 +13,7 @@ const client = new Client({
 
 client.on('interactionCreate', (interaction) => {
   if (interaction.isChatInputCommand()) {
-    interaction.reply({ content: 'Pong!'})
+    const { commandName } = interaction
   }
 })
 
