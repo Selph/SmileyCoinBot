@@ -7,9 +7,9 @@ A Discord tipping bot for SmileyCoin
 
 - Clone the repository to your machine
 
--- Use `npm install` to install the dependencies
+  - Use `npm install` to install the dependencies
     
--- Use `npm createdb` to create the necessary postgres db
+  - Use `npm createdb` to create the necessary postgres db
 
 - Make a .env file with the following information:
 ```
@@ -29,9 +29,9 @@ TOKEN=<yourbottoken>
 
 - [Add bot to server](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#bot-invite-links). 
 
--- An easy way to do this is edit this link with your clientId: 
+  - An easy way to do this is edit this link with your clientId: 
 
--- https://discord.com/oauth2/authorize?client_id=<CLIENT_ID_HERE>&permissions=0&scope=bot%20applications.commands
+  - https://discord.com/oauth2/authorize?client_id=<CLIENT_ID_HERE>&permissions=0&scope=bot%20applications.commands
 
 - run `node bot.js`. Bot will join the server and be up as long as the app is being run.
 
