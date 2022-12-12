@@ -25,10 +25,10 @@ Invite your bot to your server
 ## Commands available
 
 
-`deposit` - Create a virtual wallet
+`/deposit` - Create a virtual wallet
 
-`withdraw` - Withdraw smileys from your wallet
+`/withdraw` - Withdraw smileys from your wallet
 
-`balance` - Check virtual wallet balance
+`/balance` - Check virtual wallet balance
 
-`tip` - Send Smileys to Discord users
+`/tip` - Send Smileys to Discord users
