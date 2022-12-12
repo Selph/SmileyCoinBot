@@ -12,7 +12,7 @@ A Discord tipping bot for SmileyCoin
   - Use `npm createdb` to create the necessary postgres db
 
 - Make a .env file with the following information:
-```
+```xml
 CLIENT_ID=<yourclientid>
 GUILD_ID=<yourguildid>
 TOKEN=<yourbottoken>
