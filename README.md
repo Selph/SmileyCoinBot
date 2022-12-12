@@ -3,7 +3,7 @@ A Discord tipping bot for SmileyCoin
 
 ## How to run
 
-Create a bot on your account on [Discord Developers](https://discord.com/developers/applications/]
+Create a bot on your account on (Discord Developers)[https://discord.com/developers/applications/]
 
 Make a .env file with the following information:
 ```
