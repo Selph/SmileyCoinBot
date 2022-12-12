@@ -5,7 +5,7 @@ A Discord tipping bot for SmileyCoin
 
 Create an application on your account on [Discord Developers](https://discord.com/developers/applications/)
 
-[Invite the bot to your server](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#bot-invite-links)
+[Add bot to server](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#bot-invite-links)
 
 Clone the repository to your machine
 
