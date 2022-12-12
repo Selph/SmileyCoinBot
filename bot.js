@@ -1,25 +1,23 @@
-const { Client, GatewayIntentBits, Partials } = require('discord.js')
-require ('dotenv/config')
+// Require the necessary discord.js classes
+import { Client, Events, GatewayIntentBits, Routes } from 'discord.js'
+import DeployCommands from './deploy-commands.js';
 
-const client = new Client({
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.MessageContent,
-	],
-	partials: [
-		Partials.Message, Partials.Reaction
-	]
+const client = new Client({ 
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent
+  ] 
+});
+
+client.on('interactionCreate', (interaction) => {
+  if (interaction.isChatInputCommand()) {
+    interaction.reply({ content: 'Pong!'})
+  }
 })
 
-client.on('ready', () => {
-	console.log('The bot is ready')
-})
+client.once(Events.ClientReady, c => {
+	console.log(`Ready! Logged in as ${c.user.tag}`);
+});
 
-client.on('messageCreate', message => {
-	if (message.content === 'ping') {
-		message.reply('pong')
-	}
-})
-
-client.login(process.env.TOKEN)
+await DeployCommands(client)
