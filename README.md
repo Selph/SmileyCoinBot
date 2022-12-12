@@ -27,7 +27,11 @@ TOKEN=<yourbottoken>
     
 ## How to activate bot
 
-[Add bot to server](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#bot-invite-links). An easy way to do this is edit this link with your clientId: https://discord.com/oauth2/authorize?client_id=<CLIENT_ID_HERE>&permissions=0&scope=bot%20applications.commands
+- [Add bot to server](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#bot-invite-links). 
+
+An easy way to do this is edit this link with your clientId: 
+
+https://discord.com/oauth2/authorize?client_id=<CLIENT_ID_HERE>&permissions=0&scope=bot%20applications.commands
 
 run `node bot.js`. Bot will join the server and be up as long as the app is being run.
 
