@@ -3,42 +3,45 @@ A Discord tipping bot for SmileyCoin
 
 ## How to set up
 
-- Create an application on your account on [Discord Developers](https://discord.com/developers/applications/)
+### Activate bot
+
+- Go to [Discord Developers](https://discord.com/developers/applications/)
+  
+  - Create an application
+  
+  - Go to "Bot" and press "Reset token". Store this token inside .env as `TOKEN=<token>`
+  
+  - Under "Privileged Gateway Intents", toggle `Presence Intent`, `Server Members Intent` and `Message Content Intent`
+  
+  - Go to "OAuth2" -> Url Generator
+
+    - Select `bot` and `application.commands` in the "Scope" box 
+    
+    - Select `Send Messages`, `Read Message History` and `Use Slash Commands` in the "Bot Permissions" box. 
+    
+    - Copy the url and go to link to invite your bot to your server
+
+### Setup bot
 
 - Clone the repository to your machine
 
   - Use `npm install` to install the dependencies
+  
+  - Install [nodejs](https://nodejs.org/en/)
     
-  - Use `npm createdb` to create the necessary postgres db
+  - Use `npm createdb` to create the necessary sqlite3 db
 
 - Make a .env file with the following information:
 ```xml
-CLIENT_ID=<yourclientid>
-GUILD_ID=<yourguildid>
 TOKEN=<yourbottoken>
 //TODO postgres info
-```
-`CLIENT_ID` can be found on your bot page under OAUTH2
-
-`GUILD_ID` is the server id. On Discord, go to settings -> advanced and check "Developer Mode". Now right click on your server and press "Copy Id"
-
-`TOKEN` is your bot's token. Visit the bot page under Bot. Create the bot if necessary and click "Reset Token" to get the token.
-    
+``` 
     
 ## How to activate bot
 
-- [Add bot to server](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#bot-invite-links). 
-
-  - An easy way to do this is edit this link with your clientId: 
-
-  - https://discord.com/oauth2/authorize?client_id=<CLIENT_ID_HERE>&permissions=0&scope=bot%20applications.commands
-
 - run `node bot.js`. Bot will join the server and be up as long as the app is being run.
 
-- Edit permissions for bot on the server to use slash commands
-
 ## Commands available
-
 
 - `/deposit` - Create a virtual wallet
 
