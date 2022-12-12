@@ -19,7 +19,7 @@ Make a config.json file with the following information:
     "token": "<discordbottoken"
 }
 ```
-Clone the git to your machine.
+Clone the repository to your machine
 
 Use `npm install` to install the dependencies
     
