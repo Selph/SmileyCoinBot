@@ -35,6 +35,8 @@ TOKEN=<yourbottoken>
 
 - run `node bot.js`. Bot will join the server and be up as long as the app is being run.
 
+- Edit permissions for bot on the server to use slash commands
+
 ## Commands available
 
 
