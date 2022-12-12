@@ -7,18 +7,10 @@ Create a bot on your account on Discord
 
 Make a .env file with the following information:
 ```
-DISCORD_TOKEN=<yourtoken>
+TOKEN=<yourbottoken>
 //TODO postgres info
 ```
 
-Make a config.json file with the following information:
-```
-{
-    "clientId": "<yourclientid>",
-    "guildId": "<yourguildid",
-    "token": "<discordbottoken"
-}
-```
 Clone the repository to your machine
 
 Use `npm install` to install the dependencies
