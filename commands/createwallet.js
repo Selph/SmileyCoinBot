@@ -17,14 +17,14 @@ export async function CreateWalletInteraction(interaction, Wallets) {
         }) 
         interaction.reply(`Wallet for ${wallet.username} created. Check your DMs for info`);
         interaction.user.send(
-            `**__Hi ${await wallet.name}!__**
+            `**__Hi ${await wallet.username}!__**
             
-        **Your wallet has been created**. 
+**Your wallet has been created**. 
             
-        To deposit to the wallet, transfer funds from your Smiley wallet to: 
+To deposit to the wallet, transfer funds from your Smiley wallet to: 
             \`${await wallet.address}\`
 
-        When done, you might have to wait a few minutes for the funds to be deposited before you can use your wallet.
+When done, you might have to wait a few minutes for the funds to be deposited before you can use your wallet.
 
             > See your **balance** with \`/balance\`
 
