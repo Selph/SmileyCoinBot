@@ -7,8 +7,8 @@ import { CreateBalanceInteraction } from './commands/balance.js';
 import { SetAddressInteraction } from './commands/setaddress.js';
 
 const sequelize = SQLize
-let wallets = Wallets(sequelize)
-let transactions = Transactions(Wallets, sequelize)
+const wallets = Wallets(sequelize)
+const transactions = Transactions(Wallets, sequelize)
 
 const client = new Client({ 
   intents: [
@@ -22,8 +22,8 @@ client.on('interactionCreate', async (interaction) => {
   if (interaction.isChatInputCommand()) {
     const { commandName } = interaction
     if (commandName === 'ping') interaction.reply({ content: 'Pong!'})
-    if (commandName === 'createwallet') wallets = await CreateWalletInteraction(interaction, wallets)
-    if (commandName === 'setaddress') wallets = await SetAddressInteraction(interaction, wallets)
+    if (commandName === 'createwallet') await CreateWalletInteraction(interaction, wallets)
+    if (commandName === 'setaddress') await SetAddressInteraction(interaction, wallets)
     if (commandName === 'balance') await CreateBalanceInteraction(interaction, wallets)
     if (commandName === 'tip') interaction.reply({ content: 'Todo!'})
     if (commandName === 'withdraw') interaction.reply({ content: 'Todo!'})

@@ -30,7 +30,6 @@ When done, you might have to wait a few minutes for the funds to be deposited be
         > See your **balance** with \`/balance\`
 
         > To set your **withdrawal address**, use \`/setAddress <yourReceivingAddress>\``);
-        return Wallets;
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') {
             interaction.reply('Your user already exists.');
