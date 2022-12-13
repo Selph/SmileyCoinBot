@@ -7,7 +7,7 @@ export const SetAddressCommand = new SlashCommandBuilder()
     .toJSON()
 
 export async function SetAddressInteraction(interaction, Wallets) {
-    const Name = interaction.user.username;
+    const Name = interaction.user.tag;
     const withdraw_address = interaction.options.getString('address');
     let wallet = '';
     try {
