@@ -11,7 +11,7 @@ export async function GetAddressInteraction(interaction, Wallets) {
         wallet = await Wallets.findOne({ where: { username: interaction.user.tag }})
         await interaction.reply({
             embeds: [{
-               title: `${client.user.username}'s Deposit Address`,
+               title: `${interaction.user.username}'s Deposit Address`,
                description: `wallet.address`,
                color: "RANDOM"
             }],
@@ -22,7 +22,7 @@ export async function GetAddressInteraction(interaction, Wallets) {
         console.log(e);
         await interaction.reply({
             embeds: [{
-               title: `${client.user.username}'s Deposit Address`,
+               title: `${interaction.user.username}'s Deposit Address`,
                description: `Could not find a wallet for user ${interaction.user.tag}. Try \`/createwallet\` to create a new wallet.`,
                color: "RANDOM"
             }],
