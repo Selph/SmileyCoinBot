@@ -28,6 +28,6 @@ export async function WithdrawInteraction(interaction, Wallets) {
         }
     } catch (e) {
         console.log(e);
-        interaction.reply({content: `Could not find a wallet with name ${Name}. Try \`/createwallet\` to create a new wallet.`, ephemeral: true});
+        interaction.reply({content: `Could not find a wallet with name ${name}. Try \`/createwallet\` to create a new wallet.`, ephemeral: true});
     }
 }   
