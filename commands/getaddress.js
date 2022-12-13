@@ -5,7 +5,7 @@ export const GetAddressCommand = new SlashCommandBuilder()
     .setDescription('Get the deposit address to deposit funds to your virtual wallet')
     .toJSON()
 
-export async function SetAddressInteraction(interaction, Wallets) {
+export async function GetAddressInteraction(interaction, Wallets) {
     let wallet = '';
     try {
         wallet = await Wallets.findOne({ where: { username: interaction.user.tag }})
