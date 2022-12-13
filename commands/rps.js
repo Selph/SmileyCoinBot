@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from 'discord.js';
 
 export const RPSCommand = new SlashCommandBuilder()
-	.setName('RPS')
+	.setName('rps')
 	.setDescription('Plays Rock, Paper, Scissors')
 	.addStringOption((option) =>
 		option
