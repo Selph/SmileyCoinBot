@@ -16,7 +16,7 @@ export async function CreateWalletInteraction(interaction, Wallets) {
             address: getNewAddress(),
             withdraw_address: '',
         }) 
-        interaction.reply({content:`Wallet for ${wallet.username} created. Check your DMs for info`, ephemeral: true);
+        interaction.reply({content:`Wallet for ${wallet.username} created. Check your DMs for info`, ephemeral: true});
         interaction.user.send(
             `**__Hi ${await wallet.username}!__**
             
@@ -32,7 +32,7 @@ When done, you might have to wait a few minutes for the funds to be deposited be
         > To set your **withdrawal address**, use \`/setAddress <yourReceivingAddress>\``);
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') {
-            interaction.reply('Your user already exists.');
+            interaction.reply({content: 'Your user already exists.', ephemeral: true});
         }
     }
 } 
