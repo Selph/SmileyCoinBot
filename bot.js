@@ -5,7 +5,7 @@ import { Transactions, Wallets, SQLize } from './db.js'
 import { CreateWalletInteraction } from './commands/createwallet.js';
 import { CreateBalanceInteraction } from './commands/balance.js';
 import { SetAddressInteraction } from './commands/setaddress.js';
-import * as fs from 'fs';
+import { chokidar } from 'chokidar'
 
 const sequelize = SQLize
 const wallets = Wallets(sequelize)
@@ -39,9 +39,10 @@ client.once(Events.ClientReady, c => {
 
 await DeployCommands(client)
 
-fs.watch('./deposits', { encoding: 'buffer' },
-  (eventType, foldername) => {
-    if (foldername) {
-      console.log (foldername);
-    }
-  });
+const watcher = chokidar.watch('../deposits', {ignored: /^\./, persistent: true});
+
+watcher
+  .on('add', function(path) {console.log('File', path, 'has been added');})
+  .on('change', function(path) {console.log('File', path, 'has been changed');})
+  .on('unlink', function(path) {console.log('File', path, 'has been removed');})
+  .on('error', function(error) {console.error('Error happened', error);})
