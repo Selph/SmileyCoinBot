@@ -52,7 +52,7 @@ chokidar.watch('./deposits').on('change', async (path, stats) => {
     addresses.forEach(async (address) => {
       walletarr.push(await wallets.findOne({ where: { address: address }}))
     })
-    const wallet = await walletarr.filter(async (item) => await item !== null)[0]
+    const wallet = await walletarr.filter(async item => await item !== null)[0]
     console.log(await wallet)
     console.log(walletarr)
     await wallets.update({ balance:amount }, { where: { username: await wallet.username } })
