@@ -25,7 +25,9 @@ A Discord tipping bot for SmileyCoin
 
 ### Setup bot
 
-- Clone the repository to your machine
+- Get Ubuntu 20.04, set up a core smileycoin wallet and start a server
+
+- Clone the repository to your root folder
 
   - Use `npm install` to install the dependencies
   
