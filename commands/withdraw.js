@@ -21,13 +21,13 @@ export async function WithdrawInteraction(interaction, Wallets) {
             } catch (e) {
                 console.log(e);
             }
-            interaction.reply(`Transferred ${amount}. Your balance is now ${wallet.balance}`);
+            interaction.reply({content: `Transferred ${amount}. Your balance is now ${wallet.balance}`, ephemeral: true});
         }
         else{
-            interaction.reply(`Not enough smileys. Your balance is ${wallet.balance}.`)
+            interaction.reply({content: `Not enough smileys. Your balance is ${wallet.balance}.`, ephemeral: true})
         }
     } catch (e) {
         console.log(e);
-        interaction.reply(`Could not find a wallet with name ${Name}. Try /createwallet to create a new wallet.`);
+        interaction.reply({content: `Could not find a wallet with name ${Name}. Try /createwallet to create a new wallet.`, ephemeral: true});
     }
 }   

@@ -16,7 +16,7 @@ export async function CreateWalletInteraction(interaction, Wallets) {
             address: getNewAddress(),
             withdraw_address: '',
         }) 
-        interaction.reply(`Wallet for ${wallet.username} created. Check your DMs for info`);
+        interaction.reply({content:`Wallet for ${wallet.username} created. Check your DMs for info`, ephemeral: true);
         interaction.user.send(
             `**__Hi ${await wallet.username}!__**
             

@@ -12,9 +12,9 @@ export async function SetAddressInteraction(interaction, Wallets) {
     let wallet = '';
     try {
         wallet = await Wallets.update({ withdraw_address: withdraw_address }, { where: { username: Name } });
-        interaction.reply(`Withdraw address was edited.`);
+        interaction.reply({content: `Withdraw address was edited.`, ephemeral: true});
     } catch(e){
         console.log(e);
-        interaction.reply(`Could not find a wallet with name ${Name}. Try /createwallet to create a new wallet.`);
+        interaction.reply({content: `Could not find a wallet with name ${Name}. Try /createwallet to create a new wallet.`, ephemeral: true});
     }
 }     
