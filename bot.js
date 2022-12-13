@@ -7,8 +7,8 @@ import { CreateBalanceInteraction } from './commands/balance.js';
 import { SetAddressInteraction } from './commands/setaddress.js';
 
 const sequelize = SQLize
-const wallets = Wallets(sequelize)
-const transactions = Transactions(Wallets, sequelize)
+let wallets = Wallets(sequelize)
+let transactions = Transactions(Wallets, sequelize)
 
 const client = new Client({ 
   intents: [
