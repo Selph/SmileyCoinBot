@@ -4,3 +4,16 @@ export const BalanceCommand = new SlashCommandBuilder()
     .setName('balance')
     .setDescription('Display the balance on your virtual wallet')
     .toJSON()
+
+export async function CreateBalanceInteraction(interaction, Wallets) {
+    let wallet = '';
+    try {
+        wallet = await Wallets.findOne({ where: { username: interaction.user.tag }})
+        interaction.reply(`Your balance is ${wallet.balance}`);
+    } catch (error) {
+        // Error username not found
+        if (error.name === '') {
+            interaction.reply(`You don't have a wallet. Use \`/createwallet\` `);
+        }
+    }
+} 

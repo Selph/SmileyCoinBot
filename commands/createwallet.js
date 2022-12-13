@@ -9,8 +9,9 @@ export const CreateWalletCommand = new SlashCommandBuilder()
 export async function CreateWalletInteraction(interaction, Wallets) {
     let wallet = '';
     try {
+        // Create row in db
         wallet = await Wallets.create({
-            username: interaction.user.username,
+            username: interaction.user.tag,
             balance: 0,
             address: getNewAddress(),
             withdraw_address: '',
