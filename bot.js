@@ -43,6 +43,6 @@ await DeployCommands(client)
 chokidar.watch('./deposits').on('change', (path, stats) => {
   if (path !== 'deposits/myTransactionId') {
     const contents = JSON.parse(fs.readFileSync('./' + path, 'utf-8'))
-    console.log(contents.toJSON().txid.vout[1].scriptPubKey.addresses[0])
+    console.log(contents.txid.vout[1].scriptPubKey.addresses[0])
   }
 });
