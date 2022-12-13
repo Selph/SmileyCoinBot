@@ -7,7 +7,7 @@ A Discord tipping bot for SmileyCoin
 
 - Get Ubuntu 20.04
 
-- Set up a core smileycoin wallet, put `smileycoin-cli`and `smileycoind` into $PATH
+- Set up a core smileycoin wallet, put `smileycoin-cli` and `smileycoind` into $PATH
 
 - Append `walletnotify=/home/<yourusername>/bin/readIncoming %s` to ~/.smileycoin/smileycoin.conf
 
