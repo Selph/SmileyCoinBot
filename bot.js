@@ -41,6 +41,7 @@ client.once(Events.ClientReady, c => {
 await DeployCommands(client)
 
 chokidar.watch('./deposits').on('change', (event, path) => {
+  console.log('Path :>> ', path)
   if (path !== 'deposits/myTransactionId') {
     console.log(path)
     const contents = fs.readFileSync('./' + path, 'utf-8');
