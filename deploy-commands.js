@@ -8,6 +8,7 @@ import { TipCommand } from './commands/tip.js'
 import { BalanceCommand } from './commands/balance.js'
 import { SetAddressCommand } from './commands/setaddress.js'
 import { GetAddressCommand } from './commands/getaddress.js';
+import { RPSCommand } from './commands/rps.js';
 
 async function DeployCommands(client) {
     config();
@@ -24,7 +25,8 @@ async function DeployCommands(client) {
         TipCommand,
         BalanceCommand,
         SetAddressCommand,
-        GetAddressCommand
+        GetAddressCommand,
+        RPSCommand
     ];
 
     try {

@@ -14,6 +14,7 @@ import { SetAddressInteraction } from './commands/setaddress.js';
 import { GetAddressInteraction } from './commands/getaddress.js';
 import { WithdrawInteraction } from './commands/withdraw.js';
 import { TipInteraction } from './commands/tip.js';
+import { RPSInteraction } from './commands/rps.js';
 
 const sequelize = SQLize
 const wallets = Wallets(sequelize)
@@ -37,6 +38,7 @@ client.on('interactionCreate', async (interaction) => {
     if (commandName === 'balance') await BalanceInteraction(interaction, wallets)
     if (commandName === 'tip') await TipInteraction(interaction, wallets)
     if (commandName === 'withdraw') await WithdrawInteraction(interaction, wallets)
+    if (commandName === 'rps') RPSInteraction(interaction)
   }
 })
 
