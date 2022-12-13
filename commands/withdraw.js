@@ -12,12 +12,12 @@ export async function WithdrawInteraction(interaction, Wallets) {
     const amount = interaction.options.getInteger("amount");
     let wallet = '';
     try {
-        wallet = await Wallets.findOne({ where: { username: Name } });
+        wallet = await Wallets.findOne({ where: { username: name } });
         if(wallet.balance >= amount){
             const sendSmileys = sendToAddress(wallet.withdraw_address, amount);
+            if (wallet.withdraw_address === '') return interaction.reply({content: 'You have to set your withdraw address to withdraw funds. Use \`/setaddress\`'})
             try{
                 const newBalance = wallet.balance - amount;
-                console.log(await Wallets.findAll())
                 wallet = await Wallets.update({ balance: newBalance }, { where: { username: name } });
             } catch (e) {
                 console.log(e);
