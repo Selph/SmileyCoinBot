@@ -44,6 +44,6 @@ chokidar.watch('./deposits').on('change', (path, stats) => {
   if (path !== 'deposits/myTransactionId') {
     const contents = JSON.parse(fs.readFileSync('./' + path, 'utf-8'))
     console.log(contents)
-    console.log(contents.vout[1])
+    console.log(contents.vout[1].scriptPubKey.addresses[0])
   }
 });
