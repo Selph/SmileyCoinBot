@@ -11,7 +11,7 @@ export async function SetAddressInteraction(interaction, Wallets) {
     const withdraw_address = interaction.options.getString('address');
     let wallet = '';
     try {
-        wallet = await Wallets.update({ withdraw_address: withdraw_address }, { where: { name: Name } });
+        wallet = await Wallets.update({ withdraw_address: withdraw_address }, { where: { username: Name } });
         interaction.reply(`Withdraw address was edited.`);
         return Wallets
     } catch(e){
