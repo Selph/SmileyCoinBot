@@ -17,6 +17,7 @@ export async function WithdrawInteraction(interaction, Wallets) {
             const sendSmileys = sendToAddress(wallet.withdraw_address, amount);
             try{
                 const newBalance = wallet.balance - amount;
+                console.log(await Wallets.findAll())
                 wallet = await Wallets.update({ balance: newBalance }, { where: { username: name } });
             } catch (e) {
                 console.log(e);
