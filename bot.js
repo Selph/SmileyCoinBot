@@ -45,10 +45,14 @@ await DeployCommands(client)
 chokidar.watch('./deposits').on('change', async (path, stats) => {
   if (path !== 'deposits/myTransactionId') {
     const transaction = JSON.parse(fs.readFileSync('./' + path, 'utf-8'))
-    const address = transaction.vout[0].scriptPubKey.addresses[0]
+    let addresses = []
+    transaction.vout.forEach((vout) => { addresses.push(vout.scriptPubKey.addresses[0]) })
     const amount = Math.round(parseInt(transaction.vout[0].value))
-    const wallet = await wallets.findOne({ where: { address: address }})
-    console.log(wallet)
+    const walletarr = [] 
+    addresses.forEach(async (address) => {
+      walletarr.push(await wallets.findOne({ where: { address: address }}))
+    })
+    const wallet = walletarr.filter((item) => item !== null)[0]
     await wallets.update({ balance:amount }, { where: { username: await wallet.username } })
   }
 });
