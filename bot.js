@@ -2,7 +2,7 @@
 import { Client, Events, GatewayIntentBits, Routes } from 'discord.js'
 import DeployCommands from './deploy-commands.js';
 import { Transactions, Wallets, SQLize } from './db.js'
-// import { CreateWalletInteraction } from './commands/createwallet.js';
+import { CreateWalletInteraction } from './commands/createwallet.js';
 import { getNewAddress } from './corewallet.js';
 
 const sequelize = SQLize
@@ -21,8 +21,7 @@ client.on('interactionCreate', (interaction) => {
   if (interaction.isChatInputCommand()) {
     const { commandName } = interaction
     if (commandName === 'ping') interaction.reply({ content: 'Pong!'})
-    // if (commandName === 'createwallet') CreateWalletInteraction(interaction, wallets)
-    if (commandName === 'createwallet') interaction.reply({ content: getNewAddress() })
+    if (commandName === 'createwallet') CreateWalletInteraction(interaction, wallets)
     if (commandName === 'setaddress') interaction.reply({ content: 'Todo!'})
     if (commandName === 'balance') interaction.reply({ content: 'Todo!'})
     if (commandName === 'tip') interaction.reply({ content: 'Todo!'})
