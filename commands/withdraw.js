@@ -16,18 +16,18 @@ export async function WithdrawInteraction(interaction, Wallets) {
     wallet = await Wallets.findOne({ where: { username: name } });
     if (!wallet) return interaction.reply({content: `Could not find a wallet with name ${name}. Try \`/createwallet\` to create a new wallet.`, ephemeral: true});
     if(wallet.balance >= amount){
-        const transaction = sendToAddress(wallet.withdraw_address, parseInt(amount));
         if (wallet.withdraw_address === '') return interaction.reply({content: 'You have to set your withdraw address to withdraw funds. Use \`/setaddress\`'})
+        const transaction = sendToAddress(wallet.withdraw_address, amount-1);
         try{
             const newBalance = wallet.balance - amount;
-            wallet = await Wallets.update({ balance: newBalance }, { where: { username: name } });
+            wallet = await wallet.update({ balance: newBalance }, { where: { username: name } });
         } catch (e) {
             console.log(e);
         }
-        interaction.reply({content: `Transferred ${amount}. Your balance is now ${wallet.balance}`, ephemeral: true});
+        interaction.reply({content: `Withdrew ${amount-1} to your wallet. 1 went to transaction fees. Your balance is now ${await wallet.balance}`, ephemeral: true});
     }
     else{
-        interaction.reply({content: `Not enough smileys. Your balance is ${wallet.balance}.`, ephemeral: true})
+        interaction.reply({content: `Not enough smileys. Your balance is ${await wallet.balance}.`, ephemeral: true})
     }
     
 }   
