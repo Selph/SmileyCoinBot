@@ -7,6 +7,7 @@ import { WithdrawCommand } from './commands/withdraw.js'
 import { TipCommand } from './commands/tip.js'
 import { BalanceCommand } from './commands/balance.js'
 import { SetAddressCommand } from './commands/setaddress.js'
+import { GetAddressCommand } from './commands/getaddress.js';
 
 async function DeployCommands(client) {
     config();
@@ -22,7 +23,8 @@ async function DeployCommands(client) {
         WithdrawCommand,
         TipCommand,
         BalanceCommand,
-        SetAddressCommand
+        SetAddressCommand,
+        GetAddressCommand
     ];
 
     try {

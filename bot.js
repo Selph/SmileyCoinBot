@@ -5,6 +5,7 @@ import { Transactions, Wallets, SQLize } from './db.js'
 import { CreateWalletInteraction } from './commands/createwallet.js';
 import { CreateBalanceInteraction } from './commands/balance.js';
 import { SetAddressInteraction } from './commands/setaddress.js';
+import { GetAddressInteraction } from './commands/getaddress.js';
 import * as chokidar from 'chokidar'
 import * as fs from 'fs'
 
@@ -26,6 +27,7 @@ client.on('interactionCreate', async (interaction) => {
     if (commandName === 'ping') interaction.reply({ content: 'Pong!'})
     if (commandName === 'createwallet') await CreateWalletInteraction(interaction, wallets)
     if (commandName === 'setaddress') await SetAddressInteraction(interaction, wallets)
+    if (commandName === 'getaddress') await GetAddressInteraction(interaction, wallets)
     if (commandName === 'balance') await CreateBalanceInteraction(interaction, wallets)
     if (commandName === 'tip') interaction.reply({ content: 'Todo!'})
     if (commandName === 'withdraw') interaction.reply({ content: 'Todo!'})
