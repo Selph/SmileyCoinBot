@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from 'discord.js';
-import { sendToAddress } from '../corewallet';
+import { sendToAddress } from '../corewallet.js';
 
 export const WithdrawCommand = new SlashCommandBuilder()
     .setName('withdraw')
