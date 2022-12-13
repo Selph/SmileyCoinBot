@@ -5,7 +5,7 @@ import { Transactions, Wallets, SQLize } from './db.js'
 import { CreateWalletInteraction } from './commands/createwallet.js';
 import { CreateBalanceInteraction } from './commands/balance.js';
 import { SetAddressInteraction } from './commands/setaddress.js';
-import { chokidar } from 'chokidar'
+import * as chokidar from 'chokidar'
 
 const sequelize = SQLize
 const wallets = Wallets(sequelize)
