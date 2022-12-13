@@ -40,10 +40,8 @@ client.once(Events.ClientReady, c => {
 
 await DeployCommands(client)
 
-chokidar.watch('./deposits').on('change', (event, path) => {
-  console.log('Path :>> ', path)
+chokidar.watch('./deposits').on('change', (path, stats) => {
   if (path !== 'deposits/myTransactionId') {
-    console.log(path)
     const contents = fs.readFileSync('./' + path, 'utf-8');
     console.log(contents.toJSON().txid.vout[1].scriptPubKey.addresses[0])
   }
