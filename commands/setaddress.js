@@ -9,6 +9,8 @@ export const SetAddressCommand = new SlashCommandBuilder()
 export async function SetAddressInteraction(interaction, Wallets) {
     const Name = interaction.user.tag;
     const withdraw_address = interaction.options.getString('address');
+    if (withdraw_address === null) interaction.reply({content: 'Must fill out all parameters. Try again', ephemeral: true})
+
     let wallet = '';
     try {
         wallet = await Wallets.update({ withdraw_address: withdraw_address }, { where: { username: Name } });

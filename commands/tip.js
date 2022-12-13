@@ -13,6 +13,7 @@ export async function TipInteraction(interaction, Wallets) {
     const nickname = interaction.user.username
     const amount = interaction.options.getInteger("amount");
     const user = interaction.options.getUser("user");
+    if (amount === null || user === null) interaction.reply({content: 'Must fill out all parameters. Try again', ephemeral: true})
     const username = user.username + '#' + user.discriminator
     let wallet = '';
     let receiver = '';
