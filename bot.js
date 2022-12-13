@@ -5,6 +5,7 @@ import { Transactions, Wallets, SQLize } from './db.js'
 import { CreateWalletInteraction } from './commands/createwallet.js';
 import { CreateBalanceInteraction } from './commands/balance.js';
 import { SetAddressInteraction } from './commands/setaddress.js';
+import * as fs from 'fs';
 
 const sequelize = SQLize
 const wallets = Wallets(sequelize)
@@ -31,9 +32,16 @@ client.on('interactionCreate', async (interaction) => {
 })
 
 client.once(Events.ClientReady, c => {
-  wallets.sync({ force: true })
+  wallets.sync()
   transactions.sync()
   console.log(`Ready! Logged in as ${c.user.tag}`);
 });
 
 await DeployCommands(client)
+
+fs.watch('./deposits', { encoding: 'buffer' },
+  (eventType, foldername) => {
+    if (foldername) {
+      console.log (foldername);
+    }
+  });
