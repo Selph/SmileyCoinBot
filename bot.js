@@ -31,7 +31,9 @@ client.on('interactionCreate', (interaction) => {
 })
 
 client.once(Events.ClientReady, c => {
-	console.log(`Ready! Logged in as ${c.user.tag}`);
+  wallets.sync()
+  transactions.sync()
+  console.log(`Ready! Logged in as ${c.user.tag}`);
 });
 
 
