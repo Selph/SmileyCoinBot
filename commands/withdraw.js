@@ -8,8 +8,8 @@ export const WithdrawCommand = new SlashCommandBuilder()
     .toJSON()
 
 export async function WithdrawInteraction(interaction, Wallets) {
-    const Name = interaction.user.tag;
-    const amount = interaction.options.getString("amount");
+    const name = interaction.user.tag;
+    const amount = interaction.options.getInteger("amount");
     let wallet = '';
     try {
         wallet = await Wallets.findOne({ where: { username: Name } });
@@ -17,7 +17,7 @@ export async function WithdrawInteraction(interaction, Wallets) {
             const sendSmileys = sendToAddress(wallet.withdraw_address, amount);
             try{
                 const newBalance = wallet.balance - amount;
-                wallet = await Wallets.update({ balance: newBalance }, { where: { username: Name } });
+                wallet = await Wallets.update({ balance: newBalance }, { where: { username: name } });
             } catch (e) {
                 console.log(e);
             }
@@ -28,6 +28,6 @@ export async function WithdrawInteraction(interaction, Wallets) {
         }
     } catch (e) {
         console.log(e);
-        interaction.reply({content: `Could not find a wallet with name ${Name}. Try /createwallet to create a new wallet.`, ephemeral: true});
+        interaction.reply({content: `Could not find a wallet with name ${Name}. Try \`/createwallet\` to create a new wallet.`, ephemeral: true});
     }
 }   

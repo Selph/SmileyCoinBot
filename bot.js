@@ -9,7 +9,7 @@ import { Transactions, Wallets, SQLize } from './db.js'
 
 
 import { CreateWalletInteraction } from './commands/createwallet.js';
-import { CreateBalanceInteraction } from './commands/balance.js';
+import { BalanceInteraction } from './commands/balance.js';
 import { SetAddressInteraction } from './commands/setaddress.js';
 import { GetAddressInteraction } from './commands/getaddress.js';
 import { WithdrawInteraction } from './commands/withdraw.js';
@@ -33,7 +33,7 @@ client.on('interactionCreate', async (interaction) => {
     if (commandName === 'createwallet') await CreateWalletInteraction(interaction, wallets)
     if (commandName === 'setaddress') await SetAddressInteraction(interaction, wallets)
     if (commandName === 'getaddress') await GetAddressInteraction(interaction, wallets)
-    if (commandName === 'balance') await CreateBalanceInteraction(interaction, wallets)
+    if (commandName === 'balance') await BalanceInteraction(interaction, wallets)
     if (commandName === 'tip') interaction.reply({ content: 'Todo!'})
     if (commandName === 'withdraw') await WithdrawInteraction(interaction, wallets)
   }

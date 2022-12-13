@@ -5,7 +5,7 @@ export const BalanceCommand = new SlashCommandBuilder()
     .setDescription('Display the balance on your virtual wallet')
     .toJSON()
 
-export async function CreateBalanceInteraction(interaction, Wallets) {
+export async function BalanceInteraction(interaction, Wallets) {
     let wallet = '';
     try {
         wallet = await Wallets.findOne({ where: { username: interaction.user.tag }})
