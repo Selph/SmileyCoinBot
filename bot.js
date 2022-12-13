@@ -47,7 +47,8 @@ chokidar.watch('./deposits').on('change', async (path, stats) => {
     const transaction = JSON.parse(fs.readFileSync('./' + path, 'utf-8'))
     const address = transaction.vout[0].scriptPubKey.addresses[0]
     const amount = Math.round(parseInt(transaction.vout[0].value))
-    const user = await wallets.findOne({ where: { address: address }})
-    await wallets.update({ balance:amount }, { where: { username: user.username } })
+    const wallet = await wallets.findOne({ where: { address: address }})
+    console.log(wallet)
+    await wallets.update({ balance:amount }, { where: { username: await wallet.username } })
   }
 });
