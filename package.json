@@ -12,6 +12,7 @@
   "dependencies": {
     "@discordjs/builders": "^1.0.0",
     "@discordjs/rest": "^1.0.0",
+    "chokidar": "^3.5.3",
     "discord.js": "^14.7.1"
   },
   "type": "module",

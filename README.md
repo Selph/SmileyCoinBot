@@ -9,11 +9,13 @@ A Discord tipping bot for SmileyCoin
   
   - Create an application
   
+  - Note down the Client ID
+  
   - Go to "Bot" and press "Reset token". Store this token inside .env as `TOKEN=<token>`
   
   - Under "Privileged Gateway Intents", toggle `Presence Intent`, `Server Members Intent` and `Message Content Intent`
   
-  - Go to "OAuth2" -> Url Generator
+  - Go to "OAuth2", note down the Client ID, go to -> Url Generator
 
     - Select `bot` and `application.commands` in the "Scope" box 
     
@@ -23,18 +25,18 @@ A Discord tipping bot for SmileyCoin
 
 ### Setup bot
 
-- Clone the repository to your machine
+- Get Ubuntu 20.04, set up a core smileycoin wallet and start a server
+
+- Clone the repository to your root folder
 
   - Use `npm install` to install the dependencies
   
   - Install [nodejs](https://nodejs.org/en/)
-    
-  - Use `npm createdb` to create the necessary sqlite3 db
 
 - Make a .env file with the following information:
 ```xml
-TOKEN=<yourbottoken>
-//TODO postgres info
+TOKEN=yourbottoken
+CLIENTID=yourclientid
 ``` 
     
 ## How to activate bot
