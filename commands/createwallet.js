@@ -9,26 +9,29 @@ export const CreateWalletCommand = new SlashCommandBuilder()
 export async function CreateWalletInteraction(interaction, Wallets) {
     let wallet = '';
     try {
-         wallet = await Wallets.create({
+        wallet = await Wallets.create({
             username: interaction.user.username,
             balance: 0,
             address: getNewAddress(),
             withdraw_address: '',
         }) 
+        interaction.reply(`Wallet for ${wallet.username} created. Check your DMs for info`);
+        interaction.user.send(
+            `**__Hi ${wallet.name}!__**
+            
+            **Your wallet has been created**. 
+            
+            To deposit to the wallet, transfer funds from your Smiley wallet to: 
+            \`${wallet.address}\`
+
+            When done, you might have to wait a few minutes for the funds to be deposited before you can use your wallet.
+
+            > See your **balance** with \`/balance\`
+
+            > To set your **withdrawal address**, use \`/setAddress <yourReceivingAddress>\``);
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') {
-            interaction.user.send('Your user already exists.');
+            interaction.reply('Your user already exists.');
         }
     }
-    interaction.reply(`Wallet for ${wallet.username} created. Check your DMs for info`);
-    console.log(wallet)
-    interaction.user.send(
-        `Your wallet has been created. To deposit to the wallet, transfer funds from your Smiley wallet to: 
-        ${wallet.address}
-
-        When done, you might have to wait a few minutes for the funds to be deposited before you can use your wallet.
-
-        See your balance with /balance
-
-        To set your withdrawal address, use /setAddress <yourReceivingAddress>`);
 } 
