@@ -6,6 +6,7 @@ import { CreateWalletInteraction } from './commands/createwallet.js';
 import { CreateBalanceInteraction } from './commands/balance.js';
 import { SetAddressInteraction } from './commands/setaddress.js';
 import * as chokidar from 'chokidar'
+import * as fs from 'fs'
 
 const sequelize = SQLize
 const wallets = Wallets(sequelize)
@@ -39,6 +40,9 @@ client.once(Events.ClientReady, c => {
 
 await DeployCommands(client)
 
-chokidar.watch('./deposits').on('all', (event, path) => {
-  console.log(event, path);
+chokidar.watch('./deposits').on('change', (event, path) => {
+  if (path !== 'deposits/myTransactionId') {
+    const contents = fs.readFileSync('./' + path, 'utf-8');
+    console.log(contents.toJSON().txid.vout[1].scriptPubKey.addresses[0])
+  }
 });
