@@ -35,8 +35,8 @@ A Discord tipping bot for SmileyCoin
 
 - Make a .env file with the following information:
 ```xml
-TOKEN=<yourbottoken>
-CLIENTID=<yourclientid>
+TOKEN=yourbottoken
+CLIENTID=yourclientid
 ``` 
     
 ## How to activate bot
