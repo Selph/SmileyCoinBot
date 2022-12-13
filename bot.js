@@ -49,9 +49,9 @@ chokidar.watch('./deposits').on('change', async (path, stats) => {
     transaction.vout.forEach((vout) => { addresses.push(vout.scriptPubKey.addresses[0]) })
     const amount = Math.round(parseInt(transaction.vout[0].value))
     const walletarr = [] 
-    addresses.forEach(async (address) => {
-      walletarr.push(await wallets.findOne({ where: { address: address }}))
-    })
+    for (let address of addresses) {
+      walletarr.push( await wallets.findOne({ where: { address: address }}))
+    }
     const wallet = await walletarr.filter(async item => await item !== null)[0]
     console.log(await wallet)
     console.log(walletarr)
