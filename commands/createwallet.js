@@ -6,13 +6,13 @@ export const CreateWalletCommand = new SlashCommandBuilder()
     .setDescription('Create a virtual wallet')
     .toJSON()
 
-export async function CreateWalletInteraction(interaction, Wallets) {
+export function CreateWalletInteraction(interaction, Wallets) {
     let wallet = '';
     try {
          wallet = Wallets.create({
             username: interaction.user.username,
             balance: 0,
-            address: await getNewAddress(),
+            address: getNewAddress(),
             withdraw_address: '',
         }) 
     } catch (error) {
@@ -20,7 +20,8 @@ export async function CreateWalletInteraction(interaction, Wallets) {
             interaction.user.send('Your user already exists.');
         }
     }
-
+    interaction.reply(`Wallet for ${wallet.username} created. Check your DMs for info`);
+    console.log(wallet)
     interaction.user.send(
         `Your wallet has been created. To deposit to the wallet, transfer funds from your Smiley wallet to: 
         ${wallet.address}
