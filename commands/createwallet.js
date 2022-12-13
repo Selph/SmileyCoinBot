@@ -6,13 +6,13 @@ export const CreateWalletCommand = new SlashCommandBuilder()
     .setDescription('Create a virtual wallet')
     .toJSON()
 
-export function CreateWalletInteraction(interaction, Wallets) {
+export async function CreateWalletInteraction(interaction, Wallets) {
     let wallet = '';
     try {
          wallet = Wallets.create({
             username: interaction.user.username,
             balance: 0,
-            address: getNewAddress(),
+            address: await getNewAddress(),
             withdraw_address: '',
         }) 
     } catch (error) {

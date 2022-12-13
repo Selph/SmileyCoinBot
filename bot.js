@@ -17,11 +17,11 @@ const client = new Client({
   ] 
 });
 
-client.on('interactionCreate', (interaction) => {
+client.on('interactionCreate', async (interaction) => {
   if (interaction.isChatInputCommand()) {
     const { commandName } = interaction
     if (commandName === 'ping') interaction.reply({ content: 'Pong!'})
-    if (commandName === 'createwallet') CreateWalletInteraction(interaction, wallets)
+    if (commandName === 'createwallet') await CreateWalletInteraction(interaction, wallets)
     if (commandName === 'setaddress') interaction.reply({ content: 'Todo!'})
     if (commandName === 'balance') interaction.reply({ content: 'Todo!'})
     if (commandName === 'tip') interaction.reply({ content: 'Todo!'})
