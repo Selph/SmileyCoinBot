@@ -1,13 +1,18 @@
 // Require the necessary discord.js classes
 import { Client, Events, GatewayIntentBits, Routes } from 'discord.js'
+
+import * as chokidar from 'chokidar'
+import * as fs from 'fs'
+
 import DeployCommands from './deploy-commands.js';
 import { Transactions, Wallets, SQLize } from './db.js'
+
+
 import { CreateWalletInteraction } from './commands/createwallet.js';
 import { CreateBalanceInteraction } from './commands/balance.js';
 import { SetAddressInteraction } from './commands/setaddress.js';
 import { GetAddressInteraction } from './commands/getaddress.js';
-import * as chokidar from 'chokidar'
-import * as fs from 'fs'
+import { WithdrawInteraction } from './commands/withdraw.js';
 
 const sequelize = SQLize
 const wallets = Wallets(sequelize)
@@ -30,18 +35,19 @@ client.on('interactionCreate', async (interaction) => {
     if (commandName === 'getaddress') await GetAddressInteraction(interaction, wallets)
     if (commandName === 'balance') await CreateBalanceInteraction(interaction, wallets)
     if (commandName === 'tip') interaction.reply({ content: 'Todo!'})
-    if (commandName === 'withdraw') interaction.reply({ content: 'Todo!'})
+    if (commandName === 'withdraw') await WithdrawInteraction(interaction, wallets)
   }
 })
 
 client.once(Events.ClientReady, c => {
-  wallets.sync({force: true})
+  wallets.sync()
   transactions.sync()
   console.log(`Ready! Logged in as ${c.user.tag}`);
 });
 
 await DeployCommands(client)
 
+// If someone deposits onto wallet, updates balance in virtual wallett
 chokidar.watch('./deposits').on('change', async (path, stats) => {
   if (path !== 'deposits/myTransactionId') {
     const transaction = JSON.parse(fs.readFileSync('./' + path, 'utf-8'))
@@ -52,11 +58,7 @@ chokidar.watch('./deposits').on('change', async (path, stats) => {
     for (let address of addresses) {
       walletarr.push( await wallets.findOne({ where: { address: address }}))
     }
-    console.log(addresses)
-    console.log(await wallets.findOne({ where: { username: 'Selph#1437' }}))
     const wallet = await walletarr.filter(async item => await item !== null)[0]
-    console.log(await wallet)
-    console.log(walletarr)
     await wallets.update({ balance:amount }, { where: { username: await wallet.username } })
   }
 });
