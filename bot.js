@@ -35,7 +35,7 @@ client.on('interactionCreate', async (interaction) => {
 })
 
 client.once(Events.ClientReady, c => {
-  wallets.sync()
+  wallets.sync({force: true})
   transactions.sync()
   console.log(`Ready! Logged in as ${c.user.tag}`);
 });
@@ -52,6 +52,8 @@ chokidar.watch('./deposits').on('change', async (path, stats) => {
     for (let address of addresses) {
       walletarr.push( await wallets.findOne({ where: { address: address }}))
     }
+    console.log(addresses)
+    console.log(await wallets.findOne({ where: { username: 'Selph#1437' }}))
     const wallet = await walletarr.filter(async item => await item !== null)[0]
     console.log(await wallet)
     console.log(walletarr)
