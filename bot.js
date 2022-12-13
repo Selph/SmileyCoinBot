@@ -14,6 +14,7 @@ import { SetAddressInteraction } from './commands/setaddress.js';
 import { GetAddressInteraction } from './commands/getaddress.js';
 import { WithdrawInteraction } from './commands/withdraw.js';
 import { TipInteraction } from './commands/tip.js';
+import { HelpInteraction } from './commands/help.js';
 
 const sequelize = SQLize
 const wallets = Wallets(sequelize)
@@ -30,7 +31,7 @@ const client = new Client({
 client.on('interactionCreate', async (interaction) => {
   if (interaction.isChatInputCommand()) {
     const { commandName } = interaction
-    if (commandName === 'ping') interaction.reply({ content: 'Pong!'})
+    if (commandName === 'help') await HelpInteraction(interaction)
     if (commandName === 'createwallet') await CreateWalletInteraction(interaction, wallets)
     if (commandName === 'setaddress') await SetAddressInteraction(interaction, wallets)
     if (commandName === 'getaddress') await GetAddressInteraction(interaction, wallets)

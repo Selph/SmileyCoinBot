@@ -13,7 +13,8 @@ export async function TipInteraction(interaction, Wallets) {
     const nickname = interaction.user.username
     const amount = interaction.options.getInteger("amount");
     const user = interaction.options.getUser("user");
-    if (amount === null || user === null) interaction.reply({content: 'Must fill out all parameters. Try again', ephemeral: true})
+    if (user.username === nickname) return interaction.reply({content: `You're sending to yourself! Nothing happened.`, ephemeral: true})
+    if (amount === null || user === null) return interaction.reply({content: 'Must fill out all parameters. Try again', ephemeral: true})
     const username = user.username + '#' + user.discriminator
     let wallet = '';
     let receiver = '';
@@ -32,7 +33,7 @@ export async function TipInteraction(interaction, Wallets) {
                     interaction.reply(`${nickname} transferred ${amount} SMLY to ${user.username}! Claim your SMLY by setting withdrawal address with \`/setaddress\` and withdrawing with \`/withdraw\`.`)
                 } else {
                     const sendSmileys = sendToAddress(receiver.address, amount-1);
-                    interaction.reply({content: `Transferred ${amount-1} to ${user.username}. 1 went to transaction fees. Your balance is now ${user.name === nickname ? await wallet.balance + amount-1 : await wallet.balance}`, ephemeral: true});
+                    interaction.reply({content: `Transferred ${amount-1} to ${user.username}. 1 went to transaction fees. Your balance is now ${await wallet.balance - amount}`, ephemeral: true});
                 } 
             } catch (e) {
                 console.log(e);
