@@ -13,6 +13,9 @@ import { BalanceInteraction } from './commands/balance.js';
 import { SetAddressInteraction } from './commands/setaddress.js';
 import { GetAddressInteraction } from './commands/getaddress.js';
 import { WithdrawInteraction } from './commands/withdraw.js';
+import { TipInteraction } from './commands/tip.js';
+import { HelpInteraction } from './commands/help.js';
+import { RPSInteraction } from './commands/rps.js';
 
 const sequelize = SQLize
 const wallets = Wallets(sequelize)
@@ -29,13 +32,14 @@ const client = new Client({
 client.on('interactionCreate', async (interaction) => {
   if (interaction.isChatInputCommand()) {
     const { commandName } = interaction
-    if (commandName === 'ping') interaction.reply({ content: 'Pong!'})
+    if (commandName === 'help') await HelpInteraction(interaction)
     if (commandName === 'createwallet') await CreateWalletInteraction(interaction, wallets)
     if (commandName === 'setaddress') await SetAddressInteraction(interaction, wallets)
     if (commandName === 'getaddress') await GetAddressInteraction(interaction, wallets)
     if (commandName === 'balance') await BalanceInteraction(interaction, wallets)
-    if (commandName === 'tip') interaction.reply({ content: 'Todo!'})
+    if (commandName === 'tip') await TipInteraction(interaction, wallets)
     if (commandName === 'withdraw') await WithdrawInteraction(interaction, wallets)
+    if (commandName === 'rps') RPSInteraction(interaction)
   }
 })
 
@@ -55,10 +59,11 @@ chokidar.watch('./deposits').on('change', async (path, stats) => {
     transaction.vout.forEach((vout) => { addresses.push(vout.scriptPubKey.addresses[0]) })
     const amount = Math.round(parseInt(transaction.vout[0].value))
     const walletarr = [] 
-    for (let address of addresses) {
+    for await (let address of addresses) {
       walletarr.push( await wallets.findOne({ where: { address: address }}))
     }
     const wallet = await walletarr.filter(async item => await item !== null)[0]
-    await wallets.update({ balance:amount }, { where: { username: await wallet.username } })
+    if (wallet === null) return
+    await wallets.update({ balance:amount+wallet.balance }, { where: { username: await wallet.username } })
   }
 });

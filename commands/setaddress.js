@@ -10,6 +10,7 @@ export const SetAddressCommand = new SlashCommandBuilder()
 export async function SetAddressInteraction(interaction, Wallets) {
     const Name = interaction.user.tag;
     const withdraw_address = interaction.options.getString('address');
+    if (withdraw_address === null) return interaction.reply({content: 'Must fill out all parameters. Try again', ephemeral: true})
     const isValidated = validateAddress(withdraw_address)
     console.log(isValidated.isvalid)
     if (isValidated.isvalid === false) return interaction.reply({content: `Address ${withdraw_address} is invalid. Please enter a valid address.`, ephemeral: true})

@@ -9,6 +9,7 @@ export async function BalanceInteraction(interaction, Wallets) {
     let wallet = '';
     try {
         wallet = await Wallets.findOne({ where: { username: interaction.user.tag }})
+        if (wallet === null) return interaction.reply({content: `You don't have a wallet. Use \`/createwallet\` `, ephemeral: true});
         interaction.reply({content: `Your balance is ${wallet.balance}`, ephemeral: true});
     } catch (error) {
         // Error username not found
