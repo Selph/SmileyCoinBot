@@ -85,3 +85,6 @@ CLIENTID=yourclientid
 - `/balance` - Check virtual wallet balance
 
 - `/tip` - Send Smileys to Discord users
+
+
+[A detailed explanation of commands and logic](logic-description.md)

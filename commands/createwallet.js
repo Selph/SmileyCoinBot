@@ -16,7 +16,6 @@ export async function CreateWalletInteraction(interaction, Wallets) {
             address: getNewAddress(),
             withdraw_address: '',
         }) 
-        interaction.reply({content:`Wallet for ${wallet.username} created. Check your DMs for info`, ephemeral: true});
         interaction.reply({content:
             `**Your wallet has been created**. 
 To deposit to the wallet, transfer funds from your Smiley wallet to: 
