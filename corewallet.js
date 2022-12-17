@@ -9,5 +9,5 @@ export function sendToAddress(address, amount){
 } 
 
 export function validateAddress(address){
-    return child.execSync(`smileycoin-cli validateaddress ${address}`).toJSON()
+    return JSON.parse(child.execSync(`smileycoin-cli validateaddress ${address}`).toString())
 } 
