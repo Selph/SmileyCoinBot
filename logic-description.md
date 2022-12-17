@@ -1,6 +1,6 @@
 # User deposits 
 
-Users can deposit to their SmileyCoinBot balance from personal Smiley Coin wallets by sending to the address given by the bot when the /createwallet command is used. 
+Users can deposit to their SmileyCoinBot balance from personal Smiley Coin wallets by sending to the address given by the bot when the /createwallet or /getaddress command is used. 
 
 The SmileyCoinBot watches all incoming transactions to the core wallet and if a transaction is sent to an address belonging to a user the SmileyCoinBot will increase the users balance by the received amount.
 
